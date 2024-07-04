@@ -20,7 +20,7 @@ pub fn main() !void {
     var in_stream = reader.reader();
     var buf: [1024]u8 = undefined;
     var stdout = std.io.getStdOut().writer();
-    while (try in_stream.readUntilDelimiterOrEof(&buf, '\n')) |line| {
+    while (try in_stream.readUntilDelimiterOrEofAlloc(&buf, '\n')) |line| {
         _ = try stdout.write(line);
     }
 }
